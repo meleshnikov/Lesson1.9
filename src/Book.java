@@ -25,4 +25,22 @@ public class Book {
         this.publicationYear = publicationYear;
     }
 
+    private String getBookString() {
+        return String.format("%s %s: %s: %d",
+                author.getLastName(), author.getName(), title, publicationYear);
+    }
+
+    private String getInfoString() {
+        return String.format("%s by %s %s was published in %d",
+                title, author.getName(), author.getLastName(), publicationYear);
+    }
+
+    public void printBook() {
+        System.out.println(getBookString());
+    }
+
+    public void printInfo() {
+        System.out.println(getInfoString());
+    }
+
 }
