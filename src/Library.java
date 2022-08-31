@@ -31,14 +31,8 @@ public class Library {
         lib = Arrays.copyOf(lib, lib.length + 1);
     }
 
-    public void printBooks() {
-        for (Book book : lib) {
-            if (!isEmpty(book))
-                book.printBook();
-        }
-    }
 
-    private Book searchBook(String str) {
+    private Book searchBookByTitle(String str) {
         for (Book book : lib) {
             if (!isEmpty(book)) {
                 if (str.equals(book.getTitle()))
@@ -48,16 +42,8 @@ public class Library {
         return null;
     }
 
-    public void printBookInfo(String title) {
-        Book book = searchBook(title);
-        if (!isEmpty(book)) {
-            book.printInfo();
-        } else
-            System.out.println("Книга не найдена");
-    }
-
     public void changePublicationYear(String title, int year) {
-        Book book = searchBook(title);
+        Book book = searchBookByTitle(title);
         if (!isEmpty(book)) {
             book.setPublicationYear(year);
         } else
@@ -66,5 +52,14 @@ public class Library {
 
     private boolean isEmpty(Book book) {
         return book == null;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        for (Book b : lib) {
+            str.append(b.toString()).append('\n');
+        }
+        return str.toString();
     }
 }
